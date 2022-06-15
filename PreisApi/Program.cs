@@ -1,32 +1,20 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RestSharp;
-using System.Net;
-
 //Console.WriteLine("Hello, World!");
 //API KEY Tank
 //c1efe843-5d14-87ef-d804-6104e1450889
-//53.638810228260084, 14.030599993787295
-//https://creativecommons.tankerkoenig.de/json/list.php?lat=53.638&lng=14.030&rad=1.5&sort=dist&type=all&apikey=c1efe843-5d14-87ef-d804-6104e1450889 
-
-// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
 
 string GetReleases(string url)
 {
     var client = new RestClient(url);
     var response = client.Execute(new RestRequest());
-    return response.Content;
-
-    
-    
+    return response.Content; 
 }
 
 try
 {
     Console.Clear();
-    var url = "https://creativecommons.tankerkoenig.de/json/list.php?lat=53.638&lng=14.030&rad=1.5&sort=dist&type=all&apikey=c1efe843-5d14-87ef-d804-6104e1450889";
-    //var url = "https://creativecommons.tankerkoenig.de/json/list.php?lat=52.521&lng=13.438&rad=1.5&sort=dist&type=all&apikey=00000000-0000-0000-0000-000000000002";
-    var url1 = "https://creativecommons.tankerkoenig.de/json/prices.php?ids=4429a7d9-fb2d-4c29-8cfe-2ca90323f9f8,446bdcf5-9f75-47fc-9cfa-2c3d6fda1c3b,60c0eefa-d2a8-4f5c-82cc-b5244ecae955,44444444-4444-4444-4444-444444444444&apikey=00000000-0000-0000-0000-000000000002";
+    var url = "https://creativecommons.tankerkoenig.de/json/list.php?lat=53.638&lng=14.030&rad=5&sort=dist&type=all&apikey=c1efe843-5d14-87ef-d804-6104e1450889";
     
     //Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(url1);
     Root account = JsonConvert.DeserializeObject<Root>(GetReleases(url));
@@ -37,6 +25,7 @@ try
         Console.WriteLine("Super e5: " + item.e5);
         Console.WriteLine("Super e10: " + item.e10);
         Console.WriteLine("Geöffnet: " + item.isOpen);
+        Console.WriteLine("\n");
     }
 
     Console.ReadLine();
